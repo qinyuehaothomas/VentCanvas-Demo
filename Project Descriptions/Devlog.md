@@ -9,3 +9,10 @@ Filmed & edited vid in one day in sch.
 # Day 1
 Settle some basic framework for the project\
 start testing Hugging face and transformer locally.
+- Setup Virtual Env
+- Installed libraries
+- Tried a few models
+- **Vibe coded a lot**
+
+https://huggingface.co/Dpngtm/wav2vec2-emotion-recognition
+I copied a sample code from a wrapper of a fine tuned of a model🤡
