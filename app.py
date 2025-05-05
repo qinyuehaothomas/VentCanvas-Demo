@@ -60,6 +60,5 @@ def emotion():
 def serve_static(filename):
     return send_from_directory('static', filename)
 
-# if __name__ == "__main__":
-    # print("hi!")
-    # app.run(debug=True, ssl_context="adhoc")  # Auto-runs with HTTPS
+if __name__ == "__main__":
+    app.run()
