@@ -45,7 +45,7 @@ export class AudioRecorder {
     async stop() {
       if (!this.audioContext) return null;
 
-      console.log("did you call me??");
+      // console.log("did you call me??");
       
       // Disconnect and cleanup
       this.workletNode?.disconnect();

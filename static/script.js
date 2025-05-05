@@ -52,6 +52,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
             // vibe check
             const audioData = await recorder.stop();
             const result = await sendAudioData(audioData);
+            
             console.log('Analysis result:', result);
         
         }
