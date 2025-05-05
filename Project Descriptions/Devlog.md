@@ -42,8 +42,8 @@ Added some cool frontend animations ig?(i dont rmb isit tdy or yesterday)
 1. The webpage is always dying everytime the audio is too long
 2. Prediction suddenly becomes dogshit(probabily still smth to do with the format)
 
-
-
-
 **Solution**
 Turns out the sampling rate is wrong
+
+Faced some issues deploying to vercel, turns out a `Web Service Gateway Interface` server is needed,
+[This Youtube Tutorial](https://www.youtube.com/watch?v=o17Fk4Dcn-w&ab_channel=TurtleCode)
