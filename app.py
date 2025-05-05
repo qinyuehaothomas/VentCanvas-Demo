@@ -1,5 +1,5 @@
 from transformers import Wav2Vec2ForSequenceClassification, Wav2Vec2Processor
-import torch,librosa
+import torch,soundfile
 import numpy as np
 from io import BytesIO
 from flask import Flask, request, jsonify,render_template,send_file,url_for,send_from_directory
@@ -29,6 +29,8 @@ def emotion():
     audio_data = request.json['audio']
     waveform = np.array(audio_data, dtype=np.float32)
 
+    # soundfile.write("received.wav",data=waveform,samplerate=16000)
+
     # Process audio
     inputs = processor(
         waveform,
@@ -49,7 +51,7 @@ def emotion():
         emotion_labels[idx.item()]: prob.item()\
               for prob, idx in zip(top_probs[0], top_indices[0])
     }
-    print({'emotion': top_emotions})
+    # print({'emotion': top_emotions})
     return jsonify({'emotion': top_emotions})
 
 

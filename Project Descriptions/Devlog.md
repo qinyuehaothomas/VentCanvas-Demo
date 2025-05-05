@@ -31,3 +31,19 @@ while pydub needs ffmpeg to work,
 **Solution:**\
 process the audio into the format required by the model (*16kHz mono float32array*)\
 then feed it as an array
+
+# Day 3
+Added some cool frontend animations ig?(i dont rmb isit tdy or yesterday)
+
+**The code yesterday was not working**, so spent 3hr vibe coding a `AudioWorkletProcessor` that process the audio in the backend...
+
+
+**Problems:**
+1. The webpage is always dying everytime the audio is too long
+2. Prediction suddenly becomes dogshit(probabily still smth to do with the format)
+
+
+
+
+**Solution**
+Turns out the sampling rate is wrong
