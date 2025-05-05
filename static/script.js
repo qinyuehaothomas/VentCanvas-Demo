@@ -94,7 +94,7 @@ async function sendAudioData(audioData) {
         return result;
     } catch (error) {
         console.error('Error:', error);
-        throw error;
+        return null;
     }
 }
 
