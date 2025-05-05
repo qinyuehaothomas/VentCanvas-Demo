@@ -1,5 +1,4 @@
 import { AudioRecorder } from './audio-recorder.js';
-
 const recorder = new AudioRecorder();
 
 // Pin of Shame
@@ -11,28 +10,42 @@ var isRecording = false;
 var statusDiv = document.getElementById('status');
 var startBtn = document.getElementById('startBtn');
 var HEADING = document.getElementById("heading");
-
-function animate_heading(){
-    startBtn.disabled=true;
-    HEADING.style.animationPlayState="running";
-    startBtn.parentElement.style.animationPlayState="running";
-    setTimeout(() => {
-        startBtn.disabled=false;
-        HEADING.style.animationPlayState="paused";
-        startBtn.parentElement.style.animationPlayState="paused";
+var animations=[];
+// function animate_heading(){
+//     startBtn.disabled=true;
+//     HEADING.getAnimations()[0].play();
+//     HEADING.getAnimations()[0].play();
+//     // startBtn.parentElement.style.animationPlayState="running";
+//     setTimeout(() => {
+//         startBtn.disabled=false;
+//         HEADING.style.animationPlayState="paused";
+//         startBtn.parentElement.style.animationPlayState="paused";
         
         
-    }, 1000);
-}
+//     }, 1000);
+// }
 
 document.addEventListener("DOMContentLoaded", (event) => {
     statusDiv = document.getElementById('status');
     startBtn = document.getElementById('startBtn');
     HEADING=document.getElementById("heading");
-    animate_heading();
+    
+    animations=[
+        HEADING.getAnimations()[0],
+        startBtn.parentElement.getAnimations()[0]
+    ]
+    
+    // animations.forEach((e)=>{e.persist()});
+    // HEADING.getAnimations()[0].reverse();
+    // startBtn.parentElement.getAnimations()[0].reverse();
+
     startBtn.addEventListener('click', async () => {
-        animate_heading();
+        
+        animations.forEach((e)=>{
+            e.reverse()});
+        // animate_heading();
         if (!isRecording) {
+
             document.getElementById("mic-icon").hidden=true;
             document.getElementById("pause-icon").hidden=false;
 
@@ -44,6 +57,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 isRecording = false;
               });
         } else {
+            // console.log(animations);
+            // animations.forEach((e)=>{e.play()});
             document.getElementById("mic-icon").hidden=false;
             document.getElementById("pause-icon").hidden=true;
             // stopRecording();

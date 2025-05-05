@@ -42,9 +42,12 @@ body{
     );
     /* box-shadow: 0 0 20px rgba(100, 200, 255, 0.5);  */
     
-    animation: zoom 1s alternate;
-    animation-play-state: paused;
-    animation-iteration-count: infinite;
+    /* 0% */
+    width: 10vh;
+    height: 10vh;
+
+    animation: zoom 1s forwards;
+    animation-iteration-count: 1;
 }
 
 h1{
@@ -58,19 +61,17 @@ h1{
     /* margin-left: auto;x */
     color: #E8C999FF;
 
-    animation:slide 1s;
-    animation-direction: alternate;
-    animation-iteration-count: infinite;
+    /* 0% */
+    top:-100vh;
+    color: #E8C99900;
+
+    animation:slide 1s forwards;
+    animation-iteration-count: 1;
     
 }
 
 @keyframes slide{
-    
-    0%{
-        top:-100vh;
-        color: #E8C99900;
-        /* animation-play-state: paused; */
-    }
+    /* inline 0% so it will persist after reverse() */
     100%{
         top:0px;
         color: #E8C999FF;
@@ -82,10 +83,6 @@ h1{
     100%{
         width: 30vh;
         height: 30vh;
-    }
-    0%{
-        width: 10vh;
-        height: 10vh;
     }
 }
 
