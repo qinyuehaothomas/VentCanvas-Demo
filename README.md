@@ -14,6 +14,9 @@ A large chunck of the code is copy-pasted from the sample given\
 I'm trying to code <s>Vibe Code</s> the VentCanva feature\
 I don't know how to make andriod apps, so i can only make a flask webapp for now...
 
+Pre-trained, Pre-tuned, audio emotion classifier
+Just to proof its possible and free.
+
 # How it works
 A simple site deployed on Vercel,
 - When recording, send audio live back to server

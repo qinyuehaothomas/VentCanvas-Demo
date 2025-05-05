@@ -1,0 +1,101 @@
+
+
+body{
+    background-color: #111111;
+    min-height: 100vh;      /* Full viewport height */
+    display: flex;
+    flex-direction: column;  /* Stack children vertically */
+    justify-content: flex-end; /* Push content to bottom */
+    align-items: center;     /* Center horizontally */
+    margin: 0;              /* Remove default body margin */
+}
+
+
+#startBtn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0; /* Remove default padding */
+  }
+
+.status{
+    color: grey;
+}
+
+.BigRedButton{
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Horizontally centers children */
+    justify-content: center; /* Vertically centers children (if needed) */
+  }
+
+.gradient-circle {
+    display: flex; /* Enable Flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    border-radius: 50%; /* Creates a circle */
+    background: radial-gradient(
+        circle at center,
+        #E8C999FF,
+        /* #E8C99955,  49%, */
+        rgba(255, 255, 255, 0) 70%    /* Fully transparent edge */
+    );
+    /* box-shadow: 0 0 20px rgba(100, 200, 255, 0.5);  */
+    
+    animation: zoom 1s alternate;
+    animation-iteration-count: infinite;
+}
+
+h1{
+    font-family: "Pacifico", cursive;
+    font-size: 12vw;
+    font-weight: 400;
+    position: relative;
+    font-style: normal;
+    text-align:center;
+
+    /* margin-left: auto;x */
+    color: #E8C999FF;
+
+    animation:slide 1s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    
+}
+
+@keyframes slide{
+    
+    0%{
+        top:-100vh;
+        color: #E8C99900;
+        /* animation-play-state: paused; */
+    }
+    100%{
+        top:0px;
+        color: #E8C999FF;
+        /* animation-play-state: paused; */
+    }
+}
+@keyframes zoom{
+    
+    100%{
+        width: 30vh;
+        height: 30vh;
+    }
+    0%{
+        width: 10vh;
+        height: 10vh;
+    }
+}
+
+
+code{
+    position:sticky;   
+    bottom: 5px;
+    right:5px;
+    color: grey;
+}
+
+/* @media only screen and (max-width: 600px) {
+    h1{font-size: 100px;}
+  } */
