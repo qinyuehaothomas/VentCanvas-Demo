@@ -1,16 +1,32 @@
 import { AudioRecorder } from './audio-recorder.js';
+import { drawEmotionShapes } from './draw-canvas.js';
 const recorder = new AudioRecorder();
 
 // Pin of Shame
 // 100% vibe code🤡
 let mediaRecorder;
 let audioChunks = [];
-var isRecording = false;
+var isRecording = "Start";
+// "Loading"
+// "Show"
 
 var statusDiv = document.getElementById('status');
 var startBtn = document.getElementById('startBtn');
 var HEADING = document.getElementById("heading");
+var loader =  document.getElementById("load");
+var canvas=document.getElementById("canvas");
 var animations=[];
+var result= {
+    "emotion": {
+    "angry": 0,
+    "calm": 0,
+    "disgust": 0,
+    "fearful": 0,
+    "neutral": 0,
+    "sad": 0,
+    "surprised": 0
+    }
+};
 // function animate_heading(){
 //     startBtn.disabled=true;
 //     HEADING.getAnimations()[0].play();
@@ -25,64 +41,100 @@ var animations=[];
 //     }, 1000);
 // }
 
+
+function show_icon(name){
+    Array.from(document.getElementsByClassName("icon")).forEach((e)=>{
+        if(e.id===name){e.hidden=false;}
+        else{e.hidden=true;}
+    });
+}
+
+function updateResult(newData) {
+    const emotions = Object.keys(result.emotion);
+    const summedEmotions = {};
+    let total = 0;
+
+    // Sum corresponding values from both objects
+    for (const emotion of emotions) {
+        summedEmotions[emotion] = result.emotion[emotion] + newData.emotion[emotion];
+        total += summedEmotions[emotion];
+    }
+    // console.log(newData,summedEmotions);
+    // Normalize and update the result
+    for (const emotion of emotions) {
+        result.emotion[emotion] = summedEmotions[emotion] / total;
+    }
+}
+
 document.addEventListener("DOMContentLoaded", (event) => {
     statusDiv = document.getElementById('status');
     startBtn = document.getElementById('startBtn');
-    HEADING=document.getElementById("heading");
+    HEADING = document.getElementById("heading");
+    loader = document.getElementById("load");
+    canvas = document.getElementById("canvas");
+    // loader.classList.toggle("loader");
+
     
     animations=[
         HEADING.getAnimations()[0],
         startBtn.parentElement.getAnimations()[0]
     ]
-    
-    // animations.forEach((e)=>{e.persist()});
-    // HEADING.getAnimations()[0].reverse();
-    // startBtn.parentElement.getAnimations()[0].reverse();
 
     startBtn.addEventListener('click', async () => {
-        
-        animations.forEach((e)=>{
-            e.reverse()});
         // animate_heading();
-        if (!isRecording) {
+        if (isRecording=="Start") {
+            animations[0].reverse();
+            animations[1].reverse();
 
-            document.getElementById("mic-icon").hidden=true;
-            document.getElementById("pause-icon").hidden=false;
+            show_icon("pause");
 
-            console.log("Hi");
             // vibe check
             recorder.start()
               .catch(error => {
                 console.error('Recording error:', error);
-                isRecording = false;
+                isRecording = "Start";
               });
-        } else {
-            // console.log(animations);
-            // animations.forEach((e)=>{e.play()});
-            document.getElementById("mic-icon").hidden=false;
-            document.getElementById("pause-icon").hidden=true;
-            // stopRecording();
+            
+            statusDiv.innerText="Recording";
+            loader.classList.toggle("loader");
+            isRecording="Loading";
+        } else if(isRecording=="Loading"){
 
             console.log("Bye");
             // vibe check
             const audioData = await recorder.stop();
-            const result = await sendAudioData(audioData);
             
-            console.log('Analysis result:', result);
+            statusDiv.innerText="Sending Response";
+            let newData = await sendAudioData(audioData)
+
+            updateResult(newData);
+            
+            console.log(result);
+            loader.classList.toggle("loader");
+            
+            HEADING.hidden=true;
+            canvas.hidden=false;
+            drawEmotionShapes(result);
+
+
+            statusDiv.innerHTML="Right Click / Long Press to save image!";
+            isRecording="Start";
+            
+            animations[0].reverse();
+            animations[1].reverse();
+            show_icon("mic");
+
+            // initially wanted a download button
+            // Now is just long press / right click download
+            // isRecording="Download";
+            // show_icon("download");
+            
         
-        }
-        isRecording=!isRecording
+        } 
+        // isRecording=!isRecording
     });
 });
 
-
-function startRecording(){
-
-}
-
-function stopRecording(){
-
-}
 
 
 // 100% vibe code...
@@ -102,9 +154,6 @@ async function sendAudioData(audioData) {
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         
         const result = await response.json();
-        
-        // If you want to display it on the page
-        const output = JSON.stringify(result, null, 2);
 
         return result;
     } catch (error) {
@@ -118,3 +167,4 @@ async function sendAudioData(audioData) {
 // ... later ...
 // const audioData = await AudioRecorder.stop()
 // await sendAudioData(audioData)
+

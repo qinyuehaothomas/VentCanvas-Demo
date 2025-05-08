@@ -43,10 +43,10 @@ def emotion():
         outputs = model(**inputs)
     
     predictions = torch.nn.functional.softmax(outputs.logits, dim=-1)
-    # print(predictions)
+    # print(predictions)    
     # predicted_emotion = emotion_labels[predictions.argmax().item()]
     
-    top_probs, top_indices = torch.topk(predictions, k=7, dim=-1)
+    top_probs, top_indices = torch.topk(predictions, k=8, dim=-1)
     top_emotions = {
         emotion_labels[idx.item()]: prob.item()\
               for prob, idx in zip(top_probs[0], top_indices[0])
@@ -61,4 +61,5 @@ def serve_static(filename):
     return send_from_directory('static', filename)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0",port=10000)
+    app.run(host="0.0.0.0",port=10000,ssl_context="adhoc")
+    # app.run(host="0.0.0.0",port=10000)
