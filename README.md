@@ -56,7 +56,7 @@ A simple webapp deployed on Render (*damn slow*),
 *Notice, need a adhoc cert to run on localhost, cuz microphone access requires HTTPS connections.
 
 # Reflection on the competition
-![](/Project%20Descriptions/Group%20Photo.jpg)
+<img src="/Project%20Descriptions/Group%20Photo.jpg" width="50%">
 It was a eye opening opportunity to engage in discussion with professors, and fellow competitiors.
 
 *Key failures:*
