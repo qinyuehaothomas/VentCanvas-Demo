@@ -1,5 +1,4 @@
-
-<p style="font-size:80px; text-align: center;  font-family: 'Pacifico';">VentCanavs</p>
+# VentCanavs
 
 ![](/Project%20Descriptions/Demostration.gif)
 > With VentCanvas, we keep the emotion, not the negativity.
