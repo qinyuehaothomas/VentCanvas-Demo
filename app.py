@@ -15,7 +15,7 @@ app=Flask(__name__)
 def main():
     return render_template(r"index.html")
 
-@app.route("/emotion",methods=["POST"])
+@app.route("/emotion",methods=["POST"])   
 def emotion():
     # if 'audio' not in request.files:
     #     return jsonify({"error": "No file uploaded"}), 400

@@ -47,3 +47,11 @@ Turns out the sampling rate is wrong
 
 Faced some issues deploying to vercel, turns out a `Web Service Gateway Interface` server is needed,
 [This Youtube Tutorial](https://www.youtube.com/watch?v=o17Fk4Dcn-w&ab_channel=TurtleCode)
+
+# Day dunno what
+In the end, I deployed to render, but the server is damn slow.
+
+Addeed the drawing code, the background of `<canvas>` need to be filled first before drawing
+
+# 11/5/2025
+Yesterday was the final, today i wrote some reflection on this competiton.
